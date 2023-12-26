@@ -31,3 +31,4 @@ export async function GET(request) {
     await client.close();
   }
 }
+export const dynamic = "force-dynamic";
