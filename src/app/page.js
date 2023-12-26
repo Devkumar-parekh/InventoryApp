@@ -2,7 +2,7 @@
 import Header from "@/components/Header";
 import axios from "axios";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import {
   Button,
   Dropdown,
@@ -11,6 +11,9 @@ import {
   InputGroup,
   Table,
 } from "react-bootstrap";
+function SearchBarFallback() {
+  return <>placeholder</>;
+}
 
 export default function Home() {
   const [formDet, setFormDet] = useState({
@@ -85,15 +88,16 @@ export default function Home() {
       <Header />
       <div className="container mx-auto text-light p-5 bg-dark">
         <h1 className="text-3xl font-bold mb-6">Search products</h1>
-        <InputGroup className="mb-3">
-          <Form.Control
-            aria-label="Text input with dropdown button"
-            placeholder="Search..."
-            name="query"
-            value={searchFormDet?.query}
-            onChange={handleSearchForm}
-          />
-          {/* <Form.Select
+        <Suspense fallback={<SearchBarFallback />}>
+          <InputGroup className="mb-3">
+            <Form.Control
+              aria-label="Text input with dropdown button"
+              placeholder="Search..."
+              name="query"
+              value={searchFormDet?.query}
+              onChange={handleSearchForm}
+            />
+            {/* <Form.Select
             aria-label="Default select example"
             name="category"
             value={searchFormDet?.category}
@@ -103,8 +107,9 @@ export default function Home() {
             <option value="2">Cate1</option>
             <option value="3">Cate2</option>
           </Form.Select> */}
-          {/* <Button onClick={handleSearch}>Search</Button> */}
-        </InputGroup>
+            {/* <Button onClick={handleSearch}>Search</Button> */}
+          </InputGroup>
+        </Suspense>
         <div>
           {searchLoader ? (
             <>Loading...</>
