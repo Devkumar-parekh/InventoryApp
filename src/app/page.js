@@ -20,6 +20,8 @@ export default function Home() {
   });
   const [Dropdownlist, setDropdownlist] = useState([]);
   const [searchLoader, setSearchLoader] = useState(false);
+  const [SubmitLoader, setSubmitLoader] = useState(false);
+
   const [searchFormDet, setsearchFormDet] = useState({
     query: "",
     category: "",
@@ -44,6 +46,7 @@ export default function Home() {
   };
   const handleSubmit = async () => {
     try {
+      setSubmitLoader(true);
       const res = await axios.post("/api/setProducts", formDet);
       alert(res.data.Message);
       if (res.data.Status) {
@@ -51,6 +54,8 @@ export default function Home() {
       }
     } catch (e) {
       console.log(e);
+    } finally {
+      setSubmitLoader(false);
     }
   };
 
@@ -67,7 +72,7 @@ export default function Home() {
         setSearchLoader(true);
         const res = await axios.get(`/api/searchProducts?query=${query}`);
         console.log(res.data);
-        setDropdownlist(res.data);
+        await setDropdownlist(res.data);
         // if (res.data.Status) {
         //   getInventory();
         // }
@@ -194,15 +199,22 @@ export default function Home() {
           >
             Submit
           </button> */}
-          <Button
-            variant="primary"
-            onClick={() => {
-              handleSubmit();
-            }}
-          >
-            {" "}
-            Submit
-          </Button>
+
+          {SubmitLoader ? (
+            <>Loading...</>
+          ) : (
+            <>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                {" "}
+                Submit
+              </Button>
+            </>
+          )}
         </div>
       </div>
 
