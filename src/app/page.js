@@ -30,8 +30,7 @@ export default function Home() {
   const getInventory = async () => {
     try {
       const res = await axios.get("/api/getProducts");
-      setinventoryList(res.data);
-      console.log(res.data);
+      setinventoryList(res.data?.Data);
     } catch (e) {
       console.log(e);
     }
@@ -71,11 +70,9 @@ export default function Home() {
       try {
         setSearchLoader(true);
         const res = await axios.get(`/api/searchProducts?query=${query}`);
-        console.log(res.data);
-        await setDropdownlist(res.data);
-        // if (res.data.Status) {
-        //   getInventory();
-        // }
+        if (res.data?.Status) {
+          setDropdownlist(res.data?.Data);
+        }
       } catch (e) {
         console.log(e);
       } finally {

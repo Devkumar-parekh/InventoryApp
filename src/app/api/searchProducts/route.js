@@ -37,10 +37,14 @@ export async function GET(request) {
       .toArray();
 
     // console.log(inventoryItem);
-    return NextResponse.json(inventoryItem);
+    return NextResponse.json({
+      Data: inventoryItem,
+      Message: "Successful",
+      Status: true,
+    });
   } catch (e) {
     console.log(e.message, "error");
-    return NextResponse.json({ Message: e.message });
+    return NextResponse.json({ Message: e.message, Data: [], Status: false });
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();

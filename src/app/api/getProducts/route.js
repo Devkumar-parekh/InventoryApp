@@ -21,7 +21,11 @@ export async function GET(request) {
     const inventoryItem = await inventory.find(query).toArray();
 
     console.log(inventoryItem);
-    return NextResponse.json(inventoryItem);
+    return NextResponse.json({
+      Data: inventoryItem,
+      Message: "Successful",
+      Status: true,
+    });
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
