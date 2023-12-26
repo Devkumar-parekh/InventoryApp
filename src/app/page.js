@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Suspense, useEffect, useState } from "react";
 import {
   Button,
+  Card,
   Dropdown,
   DropdownButton,
   Form,
@@ -84,20 +85,24 @@ export default function Home() {
     }
   };
   return (
-    <div>
+    <div className="bg-darkBlue">
       <Header />
-      <div className="container mx-auto text-light p-5 bg-dark">
-        <h1 className="text-3xl font-bold mb-6">Search products</h1>
-        <Suspense fallback={<SearchBarFallback />}>
-          <InputGroup className="mb-3">
-            <Form.Control
-              aria-label="Text input with dropdown button"
-              placeholder="Search..."
-              name="query"
-              value={searchFormDet?.query}
-              onChange={handleSearchForm}
-            />
-            {/* <Form.Select
+      <div className="container mx-auto text-light p-5 ">
+        <h1 className="text-center fw-bold fs-1 bg-lightPink">
+          Search products
+        </h1>
+        <Card className="bg-lightBlue my-3">
+          <Card.Body>
+            <Suspense fallback={<SearchBarFallback />}>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  aria-label="Text input with dropdown button"
+                  placeholder="Search..."
+                  name="query"
+                  value={searchFormDet?.query}
+                  onChange={handleSearchForm}
+                />
+                {/* <Form.Select
             aria-label="Default select example"
             name="category"
             value={searchFormDet?.category}
@@ -107,51 +112,56 @@ export default function Home() {
             <option value="2">Cate1</option>
             <option value="3">Cate2</option>
           </Form.Select> */}
-            {/* <Button onClick={handleSearch}>Search</Button> */}
-          </InputGroup>
-        </Suspense>
-        <div>
-          {searchLoader ? (
-            <>Loading...</>
-          ) : (
-            <>
-              {Dropdownlist?.map((item, index) => {
-                return (
-                  <div key={index} className="d-flex justify-content-between">
-                    <div className="text-start w-100">{item?.name}</div>
-                    <div className="text-start w-100">{item?.qty}</div>
-                    <div className="text-start w-100">${item?.price}</div>
-                  </div>
-                );
-              })}
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className="container mx-auto text-light p-5 bg-dark">
-        <h1 className="text-3xl font-bold mb-6">Add a product</h1>
-        <div className="mb-4 ">
-          {/* <label className="block mb-2">Name</label>
+                {/* <Button onClick={handleSearch}>Search</Button> */}
+              </InputGroup>
+            </Suspense>
+            <div>
+              {searchLoader ? (
+                <>Loading...</>
+              ) : (
+                <>
+                  {Dropdownlist?.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="d-flex justify-content-between"
+                      >
+                        <div className="text-start w-100">{item?.name}</div>
+                        <div className="text-start w-100">{item?.qty}</div>
+                        <div className="text-start w-100">${item?.price}</div>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
+            </div>
+          </Card.Body>
+        </Card>
+        <h1 className="text-center fw-bold fs-1 bg-lightPink">Add a product</h1>
+        <Card className="bg-lightBlue my-3">
+          <Card.Body>
+            {" "}
+            <div className="mb-4 ">
+              {/* <label className="block mb-2">Name</label>
           <input
             className="w-full border-gray-300 px-4 py-2"
             name="name"
             value={formDet?.name}
             onChange={(e) => handleUpdate(e)}
           /> */}
-          <Form.Group className="mb-3">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              // placeholder="name@example.com"
-              name="name"
-              value={formDet?.name}
-              onChange={(e) => handleUpdate(e)}
-            />
-          </Form.Group>
-        </div>
-        <div className="mb-4">
-          {/* <label className="block mb-2">Qty</label>
+              <Form.Group className="mb-3">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  // placeholder="name@example.com"
+                  name="name"
+                  value={formDet?.name}
+                  onChange={(e) => handleUpdate(e)}
+                />
+              </Form.Group>
+            </div>
+            <div className="mb-4">
+              {/* <label className="block mb-2">Qty</label>
           <input
             type="number"
             className="w-full border-gray-300 px-4 py-2"
@@ -160,19 +170,19 @@ export default function Home() {
             onChange={(e) => handleUpdate(e)}
           /> */}
 
-          <Form.Group className="mb-3">
-            <Form.Label>Qty</Form.Label>
-            <Form.Control
-              type="number"
-              // placeholder="name@example.com"
-              name="qty"
-              value={formDet?.qty}
-              onChange={(e) => handleUpdate(e)}
-            />
-          </Form.Group>
-        </div>
-        <div className="mb-4">
-          {/* <label className="block mb-2">Price</label>
+              <Form.Group className="mb-3">
+                <Form.Label>Qty</Form.Label>
+                <Form.Control
+                  type="number"
+                  // placeholder="name@example.com"
+                  name="qty"
+                  value={formDet?.qty}
+                  onChange={(e) => handleUpdate(e)}
+                />
+              </Form.Group>
+            </div>
+            <div className="mb-4">
+              {/* <label className="block mb-2">Price</label>
           <input
             type="number"
             className="w-full border-gray-300 px-4 py-2"
@@ -181,19 +191,19 @@ export default function Home() {
             onChange={(e) => handleUpdate(e)}
           /> */}
 
-          <Form.Group className="mb-3">
-            <Form.Label>Price</Form.Label>
-            <Form.Control
-              type="number"
-              // placeholder="name@example.com"
-              name="price"
-              value={formDet?.price}
-              onChange={(e) => handleUpdate(e)}
-            />
-          </Form.Group>
-        </div>
-        <div className="mb-4">
-          {/* <button
+              <Form.Group className="mb-3">
+                <Form.Label>Price</Form.Label>
+                <Form.Control
+                  type="number"
+                  // placeholder="name@example.com"
+                  name="price"
+                  value={formDet?.price}
+                  onChange={(e) => handleUpdate(e)}
+                />
+              </Form.Group>
+            </div>
+            <div className="mb-4">
+              {/* <button
             className="bg-blue-500 text-white px-4 py-2"
             onClick={() => {
               handleSubmit();
@@ -202,47 +212,52 @@ export default function Home() {
             Submit
           </button> */}
 
-          {SubmitLoader ? (
-            <>Loading...</>
-          ) : (
-            <>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  handleSubmit();
-                }}
-              >
-                {" "}
-                Submit
-              </Button>
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className="container mx-auto text-light p-5 my-6 bg-dark">
-        <h1 className="text-3xl font-bold mb-6">Display Current Stock</h1>
-
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th className="px-4 py-2">Product</th>
-              <th className="px-4 py-2">Qty</th>
-              <th className="px-4 py-2">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {inventoryList?.map((item, index) => {
-              return (
-                <tr key={index}>
-                  <td className="px-4 py-2 border">{item?.name}</td>
-                  <td className="px-4 py-2 border">{item?.qty}</td>
-                  <td className="px-4 py-2 border">{item?.price}</td>
+              {SubmitLoader ? (
+                <>Loading...</>
+              ) : (
+                <>
+                  <Button
+                    variant="primary"
+                    className="bg-lightPink"
+                    onClick={() => {
+                      handleSubmit();
+                    }}
+                  >
+                    {" "}
+                    Submit
+                  </Button>
+                </>
+              )}
+            </div>
+          </Card.Body>
+        </Card>
+        <h1 className="text-center fw-bold fs-1 bg-lightPink">
+          Display Current Stock
+        </h1>
+        <Card className="bg-lightBlue my-3">
+          <Card.Body>
+            <Table striped bordered hover responsive>
+              <thead>
+                <tr>
+                  <th className="px-4 py-2">Product</th>
+                  <th className="px-4 py-2">Qty</th>
+                  <th className="px-4 py-2">Price</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+              </thead>
+              <tbody>
+                {inventoryList?.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td className="px-4 py-2 border">{item?.name}</td>
+                      <td className="px-4 py-2 border">{item?.qty}</td>
+                      <td className="px-4 py-2 border">{item?.price}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </Card.Body>
+        </Card>
       </div>
     </div>
   );

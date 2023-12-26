@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div>
       <div
-        className="sticky-menu bg-dark "
+        className="sticky-menu  "
         // style={{
         //   position: "fixed",
         //   left: 0,
@@ -16,10 +16,18 @@ const Header = () => {
         // }}
       >
         <div className="container">
-          <Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="dark">
+          <Navbar
+            expand="lg"
+            className=" bg-darkBlue"
+            // bg="primary"
+            // data-bs-theme="dark"
+          >
             <Container>
               <Navbar.Brand href="#home">InventoryApp</Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Toggle
+                aria-controls="basic-navbar-nav"
+                className="bg-lightPink"
+              />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                   <Nav.Link href="#home">Home</Nav.Link>

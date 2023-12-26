@@ -25,3 +25,23 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.bg-darkBlue a {
+  color: #ffffff;
+}
+.bg-darkBlue .dropdown-menu a {
+  color: #242947;
+}
+.bg-darkBlue {
+  background-color: #242947;
+  color: #ffffff;
+}
+
+.bg-lightBlue {
+  background-color: #b8c1ec;
+  color: #242947;
+}
+
+.bg-lightPink {
+  background-color: #eebbc2;
+  color: #242947;
+}
