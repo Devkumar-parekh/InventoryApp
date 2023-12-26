@@ -1,6 +1,7 @@
+import { connectionString } from "@/utils/constants";
 import { MongoClient } from "mongodb";
 import { NextResponse } from "next/server";
-const uri = "mongodb://127.0.0.1:27017";
+const uri = connectionString;
 const errorObj = {
   Data: null,
   Message: "Something is wrong",

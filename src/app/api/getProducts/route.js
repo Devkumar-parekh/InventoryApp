@@ -1,8 +1,9 @@
 // const { MongoClient } = require("mongodb");
+import { connectionString } from "@/utils/constants";
 import { MongoClient } from "mongodb";
 import { NextResponse } from "next/server";
 // Replace the uri string with your connection string.
-const uri = "mongodb://127.0.0.1:27017";
+const uri = connectionString;
 
 // async function run() {
 
